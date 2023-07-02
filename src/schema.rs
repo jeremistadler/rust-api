@@ -1,8 +1,19 @@
-table! {
-    users (id) {
-        id -> Integer,
-        name -> Text,
-        address -> Text,
+// @generated automatically by Diesel CLI.
+
+// diesel::table! {
+//     source_files (path) {
+//         path -> Text,
+//         hash -> Text,
+//         size -> Integer,
+//         date_created -> Text,
+//     }
+// }
+
+diesel::table! {
+    source_files (path) {
+        path -> Text,
+        hash -> Text,
+        size -> Integer,
         date_created -> Text,
     }
 }

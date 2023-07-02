@@ -1,24 +1,19 @@
-use crate::schema::*;
-use serde::{Deserialize, Serialize};
+use super::schema::source_files;
+use diesel::prelude::*;
 
-#[derive(Debug, Serialize, Deserialize, Queryable)]
-pub struct User {
-    pub id: i32,
-    pub name: String,
-    pub address: String,
-    pub date_create: String,
+#[derive(serde::Serialize, Selectable, Queryable)]
+pub struct SourceFile {
+    path: String,
+    hash: String,
+    size: i32,
+    date_created: String,
 }
 
-#[derive(Debug, Insertable)]
-#[table_name = "users"]
-pub struct UserNew<'a> {
-    pub name: &'a str,
-    pub address: &'a str,
-    pub date_created: &'a str,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct UserJson {
-    pub name: String,
-    pub address: String,
+#[derive(serde::Deserialize, Insertable, Debug)]
+#[diesel(table_name = source_files)]
+pub struct NewUser {
+    path: String,
+    hash: String,
+    size: i32,
+    date_created: String,
 }
